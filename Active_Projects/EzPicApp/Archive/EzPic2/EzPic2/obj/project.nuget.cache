@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "SpKtz8rGkzmNyw9V91OgLCloM6PTIaXqkWJbeL8JpjjwLw6D3+wNyemdGfqXrifDUA4EaBH9jxHZX7iGt5gNJQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\aad53\\OneDrive\\Desktop\\EzPicApp\\EzPic2\\EzPic2\\EzPic2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\aad53\\.nuget\\packages\\microsoft.aspnetcore.authorization\\9.0.0-preview.2.24128.4\\microsoft.aspnetcore.authorization.9.0.0-preview.2.24128.4.nupkg.sha512",
+    "C:\\Users\\aad53\\.nuget\\packages\\microsoft.aspnetcore.components\\9.0.0-preview.2.24128.4\\microsoft.aspnetcore.components.9.0.0-preview.2.24128.4.nupkg.sha512",
+    "C:\\Users\\aad53\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\9.0.0-preview.2.24128.4\\microsoft.aspnetcore.components.analyzers.9.0.0-preview.2.24128.4.nupkg.sha512",
+    "C:\\Users\\aad53\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\9.0.0-preview.2.24128.4\\microsoft.aspnetcore.components.forms.9.0.0-preview.2.24128.4.nupkg.sha512",
+    "C:\\Users\\aad53\\.nuget\\packages\\microsoft.aspnetcore.components.web\\9.0.0-preview.2.24128.4\\microsoft.aspnetcore.components.web.9.0.0-preview.2.24128.4.nupkg.sha512",
+    "C:\\Users\\aad53\\.nuget\\packages\\microsoft.aspnetcore.metadata\\9.0.0-preview.2.24128.4\\microsoft.aspnetcore.metadata.9.0.0-preview.2.24128.4.nupkg.sha512",
+    "C:\\Users\\aad53\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.0-preview.2.24128.5\\microsoft.extensions.dependencyinjection.9.0.0-preview.2.24128.5.nupkg.sha512",
+    "C:\\Users\\aad53\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.0-preview.2.24128.5\\microsoft.extensions.dependencyinjection.abstractions.9.0.0-preview.2.24128.5.nupkg.sha512",
+    "C:\\Users\\aad53\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.0-preview.2.24128.5\\microsoft.extensions.logging.abstractions.9.0.0-preview.2.24128.5.nupkg.sha512",
+    "C:\\Users\\aad53\\.nuget\\packages\\microsoft.extensions.options\\9.0.0-preview.2.24128.5\\microsoft.extensions.options.9.0.0-preview.2.24128.5.nupkg.sha512",
+    "C:\\Users\\aad53\\.nuget\\packages\\microsoft.extensions.primitives\\9.0.0-preview.2.24128.5\\microsoft.extensions.primitives.9.0.0-preview.2.24128.5.nupkg.sha512",
+    "C:\\Users\\aad53\\.nuget\\packages\\microsoft.jsinterop\\9.0.0-preview.2.24128.4\\microsoft.jsinterop.9.0.0-preview.2.24128.4.nupkg.sha512",
+    "C:\\Users\\aad53\\.nuget\\packages\\system.io.pipelines\\9.0.0-preview.2.24128.5\\system.io.pipelines.9.0.0-preview.2.24128.5.nupkg.sha512"
+  ],
+  "logs": []
+}

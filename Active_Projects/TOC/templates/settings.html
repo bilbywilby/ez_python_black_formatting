@@ -1,0 +1,54 @@
+<!-- templates/settings.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TOC Settings</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('form').on('change', function() {
+                $.ajax({
+                    url: '/settings',
+                    method: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        // Update the TOC preview
+                        $('#toc_preview').html(response.toc_html);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <form>
+        <!-- Form elements for TOC settings -->
+        <input type="submit" value="Save Settings">
+    </form>
+    <div id="toc_preview"></div>
+</body>
+</html>
+<!-- templates/settings.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TOC Settings</title>
+</head>
+<body>
+    <form action="{{ url_for('settings') }}" method="post">
+        <label for="toc_depth">TOC Depth:</label>
+        <select name="toc_depth" id="toc_depth">
+            <!-- Options for depth -->
+        </select>
+        <label for="toc_numbered">Numbered TOC:</label>
+        <input type="checkbox" name="toc_numbered" id="toc_numbered">
+        <label for="toc_style">TOC Style:</label>
+        <select name="toc_style" id="toc_style">
+            <!-- Options for style -->
+        </select>
+        <input type="submit" value="Save Settings">
+    </form>
+</body>
+</html>

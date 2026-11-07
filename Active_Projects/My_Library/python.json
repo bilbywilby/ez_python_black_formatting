@@ -1,0 +1,81 @@
+{"Connect to SQLite Database": {
+  "prefix": "connectdb",
+  "body": [
+    "import sqlite3",
+    "",
+    "# Connect to the SQLite database or create it if it doesn't exist",
+    "conn = sqlite3.connect('${1:database}.db')",
+    "cursor = conn.cursor()",
+    "$0"
+  ],
+  "description": "Connect to an SQLite database with Python."
+}
+"Create New Table": {
+  "prefix": "createtable",
+  "body": [
+    "cursor.execute(",
+    "CREATE TABLE IF NOT EXISTS ${1:table_name} (",
+    "    ${2:column_definitions}",
+    ")",
+    ")",
+    "conn.commit()",
+    "$0"
+  ],
+  "description": "Create a new table in the SQLite database."
+}
+"Insert New Record": {
+  "prefix": "insertrecord",
+  "body": [
+    "cursor.execute(",
+    "INSERT INTO ${1:table_name} (${2:columns})",
+    "VALUES (${3:values})",
+    ")",
+    "conn.commit()",
+    "$0"
+  ],
+  "description": "Insert a new record into a table."
+}
+"Update Record": {
+  "prefix": "updaterecord",
+  "body": [
+    "cursor.execute(",
+    "UPDATE ${1:table_name}",
+    "SET ${2:column} = ${3:new_value}",
+    "WHERE ${4:condition}",
+    ")",
+    "conn.commit()",
+    "$0"
+  ],
+  "description": "Update a record in a table."
+}"Tkinter Window Setup": {
+  "prefix": "tkinterwindow",
+  "body": [
+    "from tkinter import *",
+    "from tkinter import ttk",
+    "",
+    "root = Tk()",
+    "root.title('${1:Window Title}')",
+    "",
+    "# Setup the GUI components here",
+    "$0",
+    "",
+    "root.mainloop()"
+  ],
+  "description": "Setup a basic Tkinter window."
+}
+
+
+	// Place your snippets for python here. Each snippet is defined under a snippet name and has a prefix, body and
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+}

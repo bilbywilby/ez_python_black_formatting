@@ -1,0 +1,14 @@
+c:\Users\aad53\OneDrive\Desktop\EzFileApp\EzFile\EzFile\bin\Debug\net9.0\EzFile.exe
+c:\Users\aad53\OneDrive\Desktop\EzFileApp\EzFile\EzFile\bin\Debug\net9.0\EzFile.deps.json
+c:\Users\aad53\OneDrive\Desktop\EzFileApp\EzFile\EzFile\bin\Debug\net9.0\EzFile.runtimeconfig.json
+c:\Users\aad53\OneDrive\Desktop\EzFileApp\EzFile\EzFile\bin\Debug\net9.0\EzFile.dll
+c:\Users\aad53\OneDrive\Desktop\EzFileApp\EzFile\EzFile\bin\Debug\net9.0\EzFile.pdb
+c:\Users\aad53\OneDrive\Desktop\EzFileApp\EzFile\EzFile\obj\Debug\net9.0\EzFile.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\aad53\OneDrive\Desktop\EzFileApp\EzFile\EzFile\obj\Debug\net9.0\EzFile.AssemblyInfoInputs.cache
+c:\Users\aad53\OneDrive\Desktop\EzFileApp\EzFile\EzFile\obj\Debug\net9.0\EzFile.AssemblyInfo.cs
+c:\Users\aad53\OneDrive\Desktop\EzFileApp\EzFile\EzFile\obj\Debug\net9.0\EzFile.csproj.CoreCompileInputs.cache
+c:\Users\aad53\OneDrive\Desktop\EzFileApp\EzFile\EzFile\obj\Debug\net9.0\EzFile.dll
+c:\Users\aad53\OneDrive\Desktop\EzFileApp\EzFile\EzFile\obj\Debug\net9.0\refint\EzFile.dll
+c:\Users\aad53\OneDrive\Desktop\EzFileApp\EzFile\EzFile\obj\Debug\net9.0\EzFile.pdb
+c:\Users\aad53\OneDrive\Desktop\EzFileApp\EzFile\EzFile\obj\Debug\net9.0\EzFile.genruntimeconfig.cache
+c:\Users\aad53\OneDrive\Desktop\EzFileApp\EzFile\EzFile\obj\Debug\net9.0\ref\EzFile.dll

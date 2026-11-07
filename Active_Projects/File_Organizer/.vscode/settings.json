@@ -1,0 +1,15 @@
+{
+    "cSpell.language": "en,en-US,lorem",
+    "cSpell.ignoreWords": [
+        "Renamer",
+        "codeActionsOnSave"
+    ],
+    "cSpell.words": [
+        "autofetch",
+        "nosetests",
+        "Parens",
+        "Pylance",
+        "pylint",
+        "pytest"
+    ]
+}

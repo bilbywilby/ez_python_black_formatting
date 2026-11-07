@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Gazing App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">Celestron Astromaster Control Panel</h1>
+
+        <!-- Connection Status -->
+        {% for message in get_flashed_messages(category_filter=["success", "error"]) %}
+            <div class="alert alert-{{ 'success' if 'successfully' in message else 'danger' }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <!-- Connect Telescope -->
+        <form action="{{ url_for('connect') }}" method="post">
+            <button type="submit" class="btn btn-primary">Connect Telescope</button>
+        </form>
+
+        <!-- Slew Telescope -->
+        <h2 class="my-4">Slew Telescope</h2>
+        <form action="{{ url_for('slew') }}" method="post">
+            <div class="form-group">
+                <label for="ra_hours">Right Ascension (hours):</label>
+                <input type="text" class="form-control" id="ra_hours" name="ra_hours" required>
+            </div>
+            <div class="form-group">
+                <label for="dec_degrees">Declination (degrees):</label>
+                <input type="text" class="form-control" id="dec_degrees" name="dec_degrees" required>
+            </div>
+            <button type="submit" class="btn btn-secondary">Slew to Coordinates</button>
+        </form>
+
+        <!-- Identify Stars -->
+        <h2 class="my-4">Identify Stars</h2>
+        <form action="{{ url_for('identify') }}" method="post">
+            <div class="form-group">
+                <label for="fov_width">Field of View Width (degrees):</label>
+                <input type="text" class="form-control" id="fov_width" name="fov_width" required>
+            </div>
+            <div class="form-group">
+                <label for="fov_height">Field of View Height (degrees):</label>
+                <input type="text" class="form-control" id="fov_height" name="fov_height" required>
+            </div>
+            <div class="form-group">
+                <label for="ra_center">Center Right Ascension (hours):</label>
+                <input type="text" class="form-control" id="ra_center" name="ra_center" required>
+            </div>
+            <div class="form-group">
+                <label for="dec_center">Center Declination (degrees):</label>
+                <input type="text" class="form-control" id="dec_center" name="dec_center" required>
+            </div>
+            <button type="submit" class="btn btn-secondary">Identify Stars</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

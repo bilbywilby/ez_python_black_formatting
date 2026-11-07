@@ -1,0 +1,141 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "preLaunchTask": "lint",
+            "postDebugTask": "clean",
+            "presentation": {
+                "hidden": false,
+                "group": "Python",
+                "order": 0
+            },
+            "problemMatcher": "$python"
+        },
+        {
+            "name": "Python: Flask (0.11.x or later) with Reload",
+            "type": "python",
+            "request": "launch",
+            "module": "flask",
+            "env": {
+                "FLASK_APP": "${workspaceFolder}/app.py",
+                "FLASK_ENV": "development",
+                "FLASK_DEBUG": "1"
+            },
+            "args": [
+                "run",
+                "--no-debugger"
+            ],
+            "jinja": true,
+            "presentation": {
+                "hidden": false,
+                "group": "Python-Web",
+                "order": 1
+            }
+        },
+        {
+            "name": "Python: Remote Attach",
+            "type": "python",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5678
+            },
+            "pathMappings": [
+                {
+                    "localRoot": "${workspaceFolder}",
+                    "remoteRoot": "."
+                }
+            ],
+            "presentation": {
+                "hidden": false,
+                "group": "Python-Remote",
+                "order": 2
+            }
+        },
+        {
+            "name": "Python: Pytest with Coverage",
+            "type": "python",
+            "request": "launch",
+            "module": "pytest",
+            "args": [
+                "--cov=${workspaceFolder}",
+                "--cov-report=term-missing",
+                "${workspaceFolder}/tests"
+            ],
+            "console": "integratedTerminal",
+            "presentation": {
+                "hidden": false,
+                "group": "Python-Test",
+                "order": 3
+            }
+        },
+        {
+            "name": "Python: Django with Auto-reload",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "runserver",
+                "--noreload"
+            ],
+            "django": true,
+            "presentation": {
+                "hidden": false,
+                "group": "Python-Web",
+                "order": 4
+            }
+        },
+        {
+            "name": "Python: Interactive Mode",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "-i"
+            ],
+            "presentation": {
+                "hidden": false,
+                "group": "Python-Interactive",
+                "order": 5
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Python: All-in-One",
+            "configurations": [
+                "Python: Current File (Integrated Terminal)",
+                "Python: Flask (0.11.x or later) with Reload",
+                "Python: Remote Attach",
+                "Python: Pytest with Coverage",
+                "Python: Django with Auto-reload",
+                "Python: Interactive Mode"
+            ]
+        }
+    ],
+    "tasks": [
+        {
+            "label": "lint",
+            "type": "shell",
+            "command": "flake8",
+            "args": [
+                "${file}"
+            ],
+            "problemMatcher": [
+                "$flake8"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

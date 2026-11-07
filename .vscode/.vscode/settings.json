@@ -1,0 +1,159 @@
+{
+    // This configuration file is used by the VS Code editor to override the default settings.
+    "python.defaultInterpreterPath": "path/to/python",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true,
+        "source.fixAll": true
+    },
+    "editor.defaultFormatter": "ms-python.python",
+    "[python]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true,
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit"
+        }
+    },
+    "python.testing.pytestEnabled": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingImports": "error",
+        "reportUnusedImport": "warning"
+    },
+    "python.languageServer": "Pylance",
+    "python.autoComplete.addBrackets": true,
+    "python.sortImports.args": [
+        "--atomic"
+    ],
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.useLibraryCodeForTypes": true,
+    "python.autoComplete.extraPaths": [
+        "path/to/extra/modules"
+    ],
+    "python.envFile": "${workspaceFolder}/.env",
+    "python.terminal.activateEnvironment": true,
+    "python.terminal.launchArgs": [
+        "-m",
+        "module.name"
+    ],
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.autoTestDiscoverOnSaveEnabled": true,
+    "python.dataScience.sendSelectionToInteractiveWindow": true,
+    "python.dataScience.allowImportFromNotebook": true,
+    "python.dataScience.enableCellCodeLens": true,
+    "python.dataScience.jupyterServerURI": "http://localhost:8888/",
+    "python.dataScience.notebookFileRoot": "${workspaceFolder}",
+    "python.dataScience.useDefaultConfigForJupyter": true,
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "terminal.integrated.fontSize": 14,
+    "workbench.startupEditor": "newUntitledFile",
+    "files.autoSave": "onFocusChange",
+    "window.zoomLevel": 1,
+    "extensions.ignoreRecommendations": false,
+    "python.pythonPath": "path/to/python",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.pylintArgs": [
+        "--disable=C0111", // Disabling missing docstring warnings.
+        "--enable=W0614", // Removing unused imports.
+        "--disable=R0903" // Disabling too few public methods.
+    ],
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "88"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit",
+        "source.fixAll": "explicit"
+    },
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+    "python.testing.nosetestsEnabled": false,
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingImports": "error",
+        "reportUnusedImport": "warning",
+        "reportMissingModuleSource": "none"
+    },
+    "python.autoComplete.addBrackets": true,
+    "python.sortImports.args": [
+        "--atomic"
+    ],
+    "python.autoUpdateLanguageServer": false,
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.useLibraryCodeForTypes": true,
+    "python.autoComplete.extraPaths": [
+        "path/to/extra/modules"
+    ],
+    "python.envFile": "${workspaceFolder}/.env",
+    "python.terminal.activateEnvironment": true,
+    "python.terminal.launchArgs": [
+        "-m",
+        "module.name"
+    ],
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.autoTestDiscoverOnSaveEnabled": true,
+    "python.dataScience.sendSelectionToInteractiveWindow": true,
+    "python.dataScience.allowImportFromNotebook": true,
+    "python.dataScience.enableCellCodeLens": true,
+    "python.dataScience.jupyterServerURI": "http://localhost:8888/",
+    "python.dataScience.notebookFileRoot": "${workspaceFolder}",
+    "python.dataScience.useDefaultConfigForJupyter": true,
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "python.analysis.extraPaths": [
+        "path/to/extra/modules"
+    ],
+    "workbench.editor.empty.hint": "hidden",
+    "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt"
+    ],
+    "julia.symbolCacheDownload": true,
+    "julia.enableTelemetry": true,
+    "cmake.configureOnOpen": true,
+    "cmake.showOptionsMovedNotification": false,
+    "eslint.alwaysShowStatus": true,
+    "eslint.experimental.incrementalSync": true,
+    "git.autofetch": true,
+    "go.toolsManagement.autoUpdate": true,
+    "redhat.telemetry.enabled": true,
+    "grunt.autoDetect": "on",
+    "gulp.autoDetect": "on",
+    "jake.autoDetect": "on",
+    "git.allowForcePush": true,
+    "git.allowNoVerifyCommit": true,
+    "git.branchPrefix": "test",
+    "git.branchRandomName.enable": true,
+    "git.branchSortOrder": "alphabetically",
+    "task.allowAutomaticTasks": "on",
+    "git.enableSmartCommit": true,
+    "python.globalModuleInstallation": true,
+    "vs-kubernetes": {
+        "vscode-kubernetes.helm-path-windows": "C:\\Users\\aad53\\.vs-kubernetes\\tools\\helm\\windows-amd64\\helm.exe",
+        "vscode-kubernetes.minikube-path-windows": "C:\\Users\\aad53\\.vs-kubernetes\\tools\\minikube\\windows-amd64\\minikube.exe"
+    },
+    "vscode-edge-devtools.useHttps": true,
+    "explorer.confirmDragAndDrop": false,
+    "[snippets]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "elixirLS.envVariables": {
+        "_": "${workspaceFolder}/deps/elixir/lib/_build/dev/consoles/0mldp1l123456789]0_/erlang.cookie",
+        "MIX_APP_PATH": "${workspaceFolder}",
+        "MIX_HOME": "${workspaceFolder}/.mix",
+        "ERLANG_OTP_VERSION": "23",
+        "ELIXIR_CLIENT": "true",
+        "JULIA_PROJECT": "${workspaceFolder}"
+    }
+} 

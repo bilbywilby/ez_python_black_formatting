@@ -1,0 +1,97 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run script",
+      "type": "shell",
+      "command": "${config:python.pythonPath}",
+      "args": [
+        "${file}"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": {
+        "owner": "python",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ],
+        "pattern": {
+          "regexp": "\\b(?P<severity>error|warning|message)\\b:\\s+(?P<message>.+)\\s+\\((?P<file>.+):(?P<line>\\d+)\\)",
+          "severity": 1,
+          "message": 2,
+          "file": 3,
+          "line": 4
+        }
+      }
+    },
+    {
+      "label": "Build package",
+      "type": "shell",
+      "command": "${config:python.pythonPath}",
+      "args": [
+        "${workspaceFolder}/setup.py",
+        "sdist",
+        "bdist_wheel"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Run unit tests",
+      "type": "shell",
+      "command": "${config:python.pythonPath}",
+      "args": [
+        "-m",
+        "unittest",
+        "-v",
+        "${workspaceFolder}/tests/*.py"
+      ],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": true
+      },
+      "problemMatcher": {
+        "base": "$mocha-python",
+        "fileLocation": [
+          "relative",
+          "${workspaceFolder}"
+        ]
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    }
+  ],
+  "inputs": [
+    {
+      "id": "pythonPath",
+      "type": "command",
+      "command": "python.setInterpreter",
+      "args": {
+        "workspaceFolder": "${workspaceFolder}"
+      },
+      "default": "${config:python.pythonPath}",
+      "description": "Select the Python interpreter to use for this workspace"
+    }
+  ]
+}

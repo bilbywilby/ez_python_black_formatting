@@ -1,0 +1,67 @@
+# Editor configuration, see https://editorconfig.org
+root = true
+
+# All files
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 4
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+# Python files
+[*.py]
+max_line_length = 100
+
+Initializing document watcher...
+extension-output-njpwerner.autodocstring-#1-autoDocstring: {}
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: {}
+No more open editors.
+No more open editors.
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: {}
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: {}
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: {}
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: {}
+undefined: {}
+undefined: {}
+PythonProjects/Active_Projects/File_Organizer/ReadMe.md: Using EditorConfig core...
+PythonProjects/Active_Projects/File_Organizer/ReadMe.md: {}
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: {}
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: {}
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: {}
+PythonProjects/Active_Projects/File_Organizer/__init__.py: {}
+PythonProjects/Active_Projects/File_Organizer/__init__.py: Using EditorConfig core...
+PythonProjects/Active_Projects/File_Organizer/__init__.py: Using EditorConfig core...
+PythonProjects/Active_Projects/File_Organizer/.cspell/custom-dictionary.txt: Using EditorConfig core...
+PythonProjects/Active_Projects/File_Organizer/__init__.py: {}
+PythonProjects/Active_Projects/File_Organizer/__init__.py: {}
+PythonProjects/Active_Projects/File_Organizer/__init__.py: {}
+No more open editors.
+PythonProjects/Active_Projects/File_Organizer/__init__.py: {}
+PythonProjects/Active_Projects/File_Organizer/__init__.py: {}
+PythonProjects/Active_Projects/File_Organizer/__init__.py: Using EditorConfig core...
+PythonProjects/Active_Projects/File_Organizer/__init__.py: {}
+PythonProjects/Active_Projects/File_Organizer/__init__.py: Using EditorConfig core...
+PythonProjects/Active_Projects/File_Organizer/__init__.py: {}
+PythonProjects/Active_Projects/File_Organizer/__init__.py: {}
+PythonProjects/Active_Projects/File_Organizer/__init__.py: Using EditorConfig core...
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: {}
+PythonProjects/Active_Projects/File_Organizer/__init__.py: {}
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: Using EditorConfig core...
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: {}
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: Using EditorConfig core...
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: Using EditorConfig core...
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: {}
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: {}
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: Using EditorConfig core...
+extension-output-esbenp.prettier-vscode-#1-Prettier: {}
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: {}
+ms-azuretools.vscode-docker.Docker: {}
+PythonProjects/Active_Projects/File_Organizer/Ez_File.py: {}
+extension-output-EditorConfig.EditorConfig-#1-EditorConfig: {}
+undefined: {}
+undefined: {}
+No more open editors.
+No more open editors.
+extension-output-EditorConfig.EditorConfig-#1-EditorConfig: {}

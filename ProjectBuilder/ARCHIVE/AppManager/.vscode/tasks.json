@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "go",
+      "label": "go: test package",
+      "command": "test",
+      "args": ["${fileDirname}"],
+      "problemMatcher": ["$go"],
+      "group": "test",
+      "detail": "cd c:\\Users\\aad53\\OneDrive\\Desktop\\AppRunner; go test ${fileDirname}"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"materialkv.pythonFile": "main.py"
+	},
+	"extensions": {
+		"recommendations": [
+			"ms-python.flake8"
+		]
+	}
+}

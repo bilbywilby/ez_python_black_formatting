@@ -1,0 +1,272 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run script",
+            "type": "shell",
+            "command": "${config:python.pythonPath}",
+            "args": [
+                "${file}"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "problemMatcher": {
+                "owner": "python",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}"
+                ],
+                "pattern": {
+                    "regexp": "\\b(?P<severity>error|warning|message)\\b:\\s+(?P<message>.+)\\s+\\((?P<file>.+):(?P<line>\\d+)\\)",
+                    "severity": 1,
+                    "message": 2,
+                    "file": 3,
+                    "line": 4
+                }
+            }
+        },
+        {
+            "label": "Build package",
+            "type": "shell",
+            "command": "${config:python.pythonPath}",
+            "args": [
+                "${workspaceFolder}/setup.py",
+                "sdist",
+                "bdist_wheel"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "silent",
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "Run unit tests",
+            "type": "shell",
+            "command": "${config:python.pythonPath}",
+            "args": [
+                "-m",
+                "unittest",
+                "-v",
+                "${workspaceFolder}/tests/*.py"
+            ],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "panel": "shared",
+                "showReuseMessage": false,
+                "clear": true
+            },
+            "problemMatcher": {
+                "base": "$mocha-python",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceFolder}"
+                ]
+            },
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+        {
+            "type": "mix",
+            "task": "Update all deps",
+            "problemMatcher": [],
+            "label": "mix: Update all deps"
+        },
+        {
+            "type": "mix",
+            "task": "Format",
+            "problemMatcher": [
+                "$armcc5"
+            ],
+            "label": "mix: Format"
+        },
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/Active_Projects/Create_File_Directoryies/Create_File_Directoryies.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "publish",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "${workspaceFolder}/Active_Projects/Create_File_Directoryies/Create_File_Directoryies.sln",
+                "/property:GenerateFullPaths=true",
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "run",
+                "--project",
+                "${workspaceFolder}/Active_Projects/Create_File_Directoryies/Create_File_Directoryies.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "type": "java (build)",
+            "paths": [
+                "${workspace}"
+            ],
+            "isFullBuild": true,
+            "group": "build",
+            "problemMatcher": [],
+            "label": "java (build): Build Workspace",
+            "detail": "$(tools) Build all the Java projects in workspace."
+        },
+        {
+            "type": "docker-build",
+            "label": "docker-build",
+            "platform": "node",
+            "dockerBuild": {
+                "dockerfile": "${workspaceFolder}/vscode-black-formatter/Dockerfile",
+                "context": "${workspaceFolder}/vscode-black-formatter",
+                "pull": true
+            },
+            "node": {
+                "package": "${workspaceFolder}/vscode-black-formatter/package.json"
+            }
+        },
+        {
+            "type": "docker-run",
+            "label": "docker-run: release",
+            "dependsOn": [
+                "docker-build"
+            ],
+            "platform": "node",
+            "node": {
+                "package": "${workspaceFolder}/vscode-black-formatter/package.json"
+            }
+        },
+        {
+            "type": "docker-run",
+            "label": "docker-run: debug",
+            "dependsOn": [
+                "docker-build"
+            ],
+            "dockerRun": {
+                "env": {
+                    "DEBUG": "*",
+                    "NODE_ENV": "development"
+                }
+            },
+            "node": {
+                "package": "${workspaceFolder}/vscode-black-formatter/package.json",
+                "enableDebugging": true
+            }
+        },
+        {
+            "type": "dotnet",
+            "task": "clean",
+            "group": "clean",
+            "problemMatcher": [],
+            "label": "dotnet: clean"
+        },
+        {
+            "type": "julia",
+            "command": "juliasysimagebuild",
+            "problemMatcher": [
+                ""
+            ],
+            "group": "build",
+            "label": "Julia: Build custom sysimage for current environment (experimental)"
+        },
+        {
+            "type": "npm",
+            "script": "compile",
+            "path": "vscode-black-formatter",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "label": "npm: compile - vscode-black-formatter",
+            "detail": "webpack"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "pythonPath",
+            "type": "command",
+            "command": "python.setInterpreter",
+            "args": {
+                "workspaceFolder": "${workspaceFolder}"
+            },
+            "default": "${config:python.pythonPath}",
+            "description": "Select the Python interpreter to use for this workspace"
+        },
+        {
+            "id": "cwd",
+            "type": "folder",
+            "default": "${workspaceFolder}",
+            "description": "The working directory in which the command is executed."
+        },
+        {
+            "id": "envFile",
+            "type": "file",
+            "pattern": ".env",
+            "default": "${workspaceFolder}/.env",
+            "description": "Environment file to load before running the task."
+        },
+        {
+            "id": "buildArgs",
+            "type": "string",
+            "multiline": true,
+            "default": "",
+            "description": "Additional arguments passed to webpack when building." 
+        },
+        { 
+            "id": "sourceMap",
+            "type": "boolean",  
+            "default": false,
+            "description": "Enable sourcemaps?"
+        },
+        {
+            "id":"showProgress","type":"boolean","label":"Show Progress","default":true,"description":"Controls whether execution progress should be displayed 
+            "id": "webpackConfig",
+            "type": "pick",
+            "label": "Choose a Webpack Configuration File",
+            "items": [
+                {"value":"webpack.config.js","label":"Use custom webpack config"},
+                {"value":"package.json","label":"Use \"scripts\" field from package.json"}
+            ],
+            "default": "webpack.config.js"
+        }
+    ],
+    "suggests": {
+        "command": ["run"],
+        "args": ["--progress"]
+     }
+     [
+
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    }
+    ],
+    "version": "2.0.0"
+}

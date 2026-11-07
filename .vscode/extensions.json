@@ -1,0 +1,15 @@
+{
+  "recommendations": [
+    "formulahendry.code-runner",
+    "jakebecker.elixir-ls",
+    "cake-build.cake-vscode",
+    "mhutchie.git-graph",
+    "evolution-gaming.evolution-gaming--vscode-eslint",
+    "donjayamanne.python-environment-manager",
+    "franneck94.c-cpp-runner",
+    "metabob.metabob",
+    "ms-python.vscode-pylance",
+    "shahilkumar.docxreader",
+    "ms-python.flake8"
+  ]
+}

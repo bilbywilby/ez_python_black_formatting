@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "UPbVLrQGGlnueNsnH94WRou0+yv6w9GI86UoVgaX4v4ZZUQkPCNeKE4oGsEmekyMBvgQlBtg7oOjsUElJlWwwA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\aad53\\OneDrive\\Desktop\\PythonProjects\\Active_Projects\\Create_File_Directoryies\\Create_File_Directoryies\\Create_File_Directoryies.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\aad53\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.1\\microsoft.netcore.app.ref.8.0.1.nupkg.sha512",
+    "C:\\Users\\aad53\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.1\\microsoft.windowsdesktop.app.ref.8.0.1.nupkg.sha512",
+    "C:\\Users\\aad53\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.1\\microsoft.aspnetcore.app.ref.8.0.1.nupkg.sha512",
+    "C:\\Users\\aad53\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\8.0.1\\microsoft.netcore.app.host.win-x64.8.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,59 @@
+class Solution {
+    public boolean isAlienSortable(String[] words, String order) {
+        // Build a dictionary to store the character and its index in `order`.
+        Map<Character, Integer> dict = new HashMap<>();
+        for (int i = 0; i < order.length(); ++i) {
+            dict.put(order.charAt(i), i);
+        }
+
+        // Compare each pair of words. If one word comes before another according to `order`, then it's sortable.
+        for (int i = 0; i < words.length - 1; ++i) {
+            String word1 = words[i];
+            String word2 = words[i + 1];
+
+            // Find the index at which the two words differ.
+            int j = 0;
+            while (j < word1.length() && j < word2.length() && dict.get(word1.charAt(j)) == dict.get(word2.charAt(j))) {
+                j++;
+            }
+
+            // If the words are the same length or the first differing character is in a different order, then the words are not sortable.
+            if (j == word1.length() || j == word2.length() || dict.get(word1.charAt(j)) < dict.get(word2.charAt(j))) {
+                continue;
+            }
+
+            // If the words are not sortable, return false.
+            return false;
+        }
+
+        // If all pairs of words are sortable, return true.
+        return true;
+    }import java.util.HashMap;
+import java.util.Map;
+
+public class Solution {
+    public boolean isAlienSortable(String[] words, String order) {
+        // Build a dictionary to store the character and its index in `order`.
+        Map<Character, Integer> dict = new HashMap<>();
+        for (int i = 0; i < order.length(); ++i) {
+            dict.put(order.charAt(i), i);
+        }
+
+        // Compare each pair of words. If one word comes before another according to `order`, then it's sortable.
+        for (int i = 0; i < words.length - 1; ++i) {
+            String word1 = words[i];
+            String word2 = words[i + 1];
+
+            // Find the index at which the two words differ.
+            int index = word1.indexOf(word2.charAt(0), 0);
+
+            // If the words are the same length or the first differing character is in a different order, then the words are not sortable.
+            if (index == -1 || dict.get(word1.charAt(index)) > dict.get(word2.charAt(index))) {
+                return false;
+            }
+        }
+
+        // If all pairs of words are sortable, return true.
+        return true;
+    }
+}

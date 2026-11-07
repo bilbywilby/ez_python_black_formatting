@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "ms-dotnettools.csharp",
+        "franneck94.c-cpp-runner",
+        "ms-edgedevtools.vscode-edge-devtools",
+        "ms-python.python"
+    ]
+}

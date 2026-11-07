@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthony A. Dee - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="branding">
+                <h1><span class="highlight">Anthony A. Dee</span>'s Portfolio</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#bio" aria-label="About section">About</a></li>
+                    <li><a href="#resume" aria-label="Resume section">Resume</a></li>
+                    <li><a href="#contact" aria-label="Contact section">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="hero" aria-label="Hero section">
+            <div class="container">
+                <h2>Welcome to My Personal Website</h2>
+                <p>As a dynamic and detail-oriented professional, I am excited to showcase my expertise and
+                    accomplishments.</p>
+                <a href="#contact" class="cta-btn" role="button">Contact Me</a>
+            </div>
+        </section>
+
+        <section id="bio" class="container" aria-label="Biography section">
+            <h2>About Me</h2>
+            <p>I am a Clinical Research Assistant with a B.S. in Health and Human Development from Pennsylvania State
+                University. Certified in phlebotomy and BLS/CPR with a background in emergency medical services, I am
+                seeking to leverage my expertise in a challenging entry-level position.</p>
+        </section>
+
+        <section id="resume" class="container" aria-label="Resume section">
+            <h2>Resume</h2>
+            <div class="resume-content">
+                <h3>Objective</h3>
+                <p>Dynamic and detail-oriented Clinical Research Assistant with a B.S. in Health and Human Development
+                    from Pennsylvania State University. Certified in phlebotomy and BLS/CPR with a background in
+                    emergency medical services. Proven ability to manage clinical trials, analyze large data sets, and
+                    perform various medical procedures. Seeking to leverage my expertise in a challenging entry-level
+                    position.</p>
+
+                <h3>Work Experience</h3>
+                <ul>
+                    <li><strong>Wills Eye Physicians - MidAtlantic Retina</strong> (March 2023 – September 2023) -
+                        Clinical Research Assistant, Bethlehem, PA</li>
+                    <li><strong>East Allen Ambulance Company</strong> (January 2021 – December 2022) - Crew Chief,
+                        Preceptor, EMT, Bath, PA</li>
+                    <li><strong>Cetronia Ambulance Company</strong> (January 2018 – February 2020) - EMT on Advanced
+                        Life Support Unit, Allentown, PA</li>
+                    <li><strong>Salisbury Township High School</strong> (October 2018 – November 2020) - Assistant
+                        Varsity Wrestling Coach, Allentown, PA</li>
+                    <li><strong>Centre Lifelink Ambulance Company</strong> (September 2015 – May 2018) - EMT on Basic
+                        and Advanced Life Support units, State College, PA</li>
+                    <li><strong>Elite Championship Tournament Baseball</strong> (Seasonal since 2015) - Operations
+                        Supervisor, Allentown, PA</li>
+                </ul>
+
+                <h3>Education</h3>
+                <p>Pennsylvania State University (August 2021) - Bachelors of Science in Health and Human Development,
+                    State College, PA</p>
+
+                <h3>Certifications & Skills</h3>
+                <p>Skills: Strong analytical, communication, and teamwork abilities; Good Clinical Practice (GCP) and
+                    clinical research processes; Proficient in EMR and billing systems: NexGen, EPIC, iMedidata, DARC,
+                    EmsCharts, Zoll; Data analysis and manipulation in Excel</p>
+                <p>Certifications: Phlebotomy certified (2023), Refractory Eye Exam certified (2023), BLS/CPR certified
+                    (2015)</p>
+            </div>
+            <!-- Providing a download link for the resume -->
+            <p><a href="AnthonyADee_Resume.pdf" download="AnthonyADee_Resume.pdf">Download My Resume (PDF)</a></p>
+        </section>
+
+        <section id="contact" class="container" aria-label="Contact section">
+            <h2>Contact Me</h2>
+            <form id="contact-form" aria-label="Contact form">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" placeholder="Anthony A. Dee" required>
+
+                <label for="email">Your Email</label>
+                <input type="email" id="email" placeholder="adee2630@outlook.com" required>
+
+                <label for="message">Your Message</label>
+                <textarea id="message" placeholder="Please leave me your message..." required></textarea>
+
+                <button type="submit" class="cta-btn">Connect with Me</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Anthony A. Dee. All Rights Reserved.</p>
+    </footer>
+</body>
+
+</html>

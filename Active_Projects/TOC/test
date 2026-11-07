@@ -1,0 +1,604 @@
+from flask import Flask, render_template, request, jsonify
+import markdown2
+
+app = Flask(__name__)
+
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('index.html', text='')
+
+@app.route('/parse', methods=['POST'])
+def parse():
+    text = request.form['content']
+    html_content = markdown2.markdown(text)
+    headers = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+    toc = {'toc_text': '', 'headers': []}
+
+    for line in html_content.split('\n'):
+        if any(header in line for header in headers):
+            toc['headers'].append(line.strip())
+
+    header_index = 1
+    toc_text = '<ol>\n'
+
+    for header in toc['headers']:
+        toc_text += f'  <li><a href="#{header_index}">{header.split(" ")[0]}</a></li>\n'
+        header_index += 1
+
+    toc_text += '</ol>\n'
+
+    toc['toc_text'] = toc_text
+
+    return render_template('index.html', text=text, toc=toc)
+
+if __name__ == "__main__":
+    app.run(debug=True)
+    
+# main.py
+from flask import Flask, render_template, request, jsonify, session
+import markdown2
+from PIL import Image
+import pytesseract
+import os
+
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Replace with your secret key
+
+# Supported file extensions
+ALLOWED_EXTENSIONS = {'md', 'jpg', 'png'}
+
+@app.route('/')
+def index():
+    # Render the main page with form
+    return render_template('index.html')
+
+@app.route('/settings', methods=['GET', 'POST'])
+def settings():
+    if request.method == 'POST':
+        # Save the settings in the session
+        session['toc_depth'] = request.form.get('toc_depth', type=int)
+        session['toc_numbered'] = 'toc_numbered' in request.form
+        session['toc_style'] = request.form.get('toc_style')
+        # Return a preview of the TOC based on the settings
+        toc_html = generate_toc(session['content'], session['toc_depth'], session['toc_numbered'], session['toc_style'])
+        return jsonify(toc_html=toc_html)
+    # Render the settings page
+    return render_template('settings.html')
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        uploaded_file = request.files['file']
+        if uploaded_file and allowed_file(uploaded_file.filename):
+            file_extension = os.path.splitext(uploaded_file.filename)[1].lower()
+            content = ''
+            if file_extension in ['.jpg', '.png']:
+                content = image_to_text(uploaded_file)
+            elif file_extension == '.md':
+                content = uploaded_file.read().decode('utf-8')
+            # Save content in session for TOC preview
+            session['content'] = content
+            html_content, toc_html = markdown_to_html_with_toc(content)
+            return render_template('preview.html', html_content=html_content, toc_html=toc_html)
+    # Render the upload page
+    return render_template('upload.html')
+
+# ... (rest of the functions)
+
+def markdown_to_html_with_toc(markdown_content):
+    # Retrieve settings from session
+    toc_depth = session.get('toc_depth', 3)
+    toc_numbered = session.get('toc_numbered', False)
+    toc_style = session.get('toc_style', 'default')
+    
+    extras = ["toc", "fenced-code-blocks"]
+    html_content = markdown2.markdown(markdown_content, extras=extras)
+    toc_html = generate_toc(html_content, toc_depth, toc_numbered, toc_style)
+    return html_content, toc_html
+
+# ... (rest of the code)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+# main.py
+from flask import Flask, render_template, request, jsonify, session
+import markdown2
+from PIL import Image
+import pytesseract
+import os
+
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Replace with your secret key
+
+# Supported file extensions
+ALLOWED_EXTENSIONS = {'md', 'jpg', 'png'}
+
+@app.route('/')
+def index():
+    # Render the main page with form
+    return render_template('index.html')
+
+@app.route('/settings', methods=['GET', 'POST'])
+def settings():
+    if request.method == 'POST':
+        # Save the settings in the session
+        session['toc_depth'] = request.form.get('toc_depth', type=int)
+        session['toc_numbered'] = 'toc_numbered' in request.form
+        session['toc_style'] = request.form.get('toc_style')
+        return jsonify(success=True)
+    # Render the settings page
+    return render_template('settings.html')
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        uploaded_file = request.files['file']
+        if uploaded_file and allowed_file(uploaded_file.filename):
+            file_extension = os.path.splitext(uploaded_file.filename)[1].lower()
+            content = ''
+            if file_extension in ['.jpg', '.png']:
+                content = image_to_text(uploaded_file)
+            elif file_extension == '.md':
+                content = uploaded_file.read().decode('utf-8')
+            html_content, toc_html = markdown_to_html_with_toc(content)
+            return render_template('preview.html', html_content=html_content, toc_html=toc_html)
+    # Render the upload page
+    return render_template('upload.html')
+
+# ... (rest of the functions)
+
+def markdown_to_html_with_toc(markdown_content):
+    # Retrieve settings from session
+    toc_depth = session.get('toc_depth', 3)
+    toc_numbered = session.get('toc_numbered', False)
+    toc_style = session.get('toc_style', 'default')
+    
+    extras = ["toc", "fenced-code-blocks"]
+    html_content = markdown2.markdown(markdown_content, extras=extras)
+    toc_html = generate_toc(html_content, toc_depth, toc_numbered, toc_style)
+    return html_content, toc_html
+
+# ... (rest of the code)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+# main.py
+from flask import Flask, render_template, request, jsonify, redirect, url_for
+import markdown2
+from PIL import Image
+import pytesseract
+import os
+
+app = Flask(__name__)
+
+# Supported file extensions
+ALLOWED_EXTENSIONS = {'md', 'jpg', 'png'}
+
+@app.route('/')
+def index():
+    # Render the main page with form
+    return render_template('index.html')
+
+@app.route('/settings', methods=['GET', 'POST'])
+def settings():
+    if request.method == 'POST':
+        # Save the settings and redirect to the upload page
+        request.session['toc_depth'] = request.form.get('toc_depth', type=int)
+        request.session['toc_numbered'] = 'toc_numbered' in request.form
+        request.session['toc_style'] = request.form.get('toc_style')
+        return redirect(url_for('upload_file'))
+    # Render the settings page
+    return render_template('settings.html')
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        uploaded_file = request.files['file']
+        if uploaded_file and allowed_file(uploaded_file.filename):
+            file_extension = os.path.splitext(uploaded_file.filename)[1].lower()
+            content = ''
+            if file_extension in ['.jpg', '.png']:
+                content = image_to_text(uploaded_file)
+            elif file_extension == '.md':
+                content = uploaded_file.read().decode('utf-8')
+            html_content, toc_html = markdown_to_html_with_toc(content)
+            return render_template('preview.html', html_content=html_content, toc_html=toc_html)
+    # Render the upload page
+    return render_template('upload.html')
+
+# ... (rest of the functions)
+
+def markdown_to_html_with_toc(markdown_content):
+    # Retrieve settings from session
+    toc_depth = request.session.get('toc_depth', 3)
+    toc_numbered = request.session.get('toc_numbered', False)
+    toc_style = request.session.get('toc_style', 'default')
+    
+    extras = ["toc", "fenced-code-blocks"]
+    html_content = markdown2.markdown(markdown_content, extras=extras)
+    toc_html = generate_toc(html_content, toc_depth, toc_numbered, toc_style)
+    return html_content, toc_html
+
+# ... (rest of the code)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+    
+# main.py
+from flask import Flask, render_template, request, jsonify
+import markdown2
+from PIL import Image
+import pytesseract
+import os
+
+app = Flask(__name__)
+
+# Supported file extensions
+ALLOWED_EXTENSIONS = {'md', 'jpg', 'png'}
+
+@app.route('/')
+def index():
+    # Render the main page with form
+    return render_template('index.html')
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    uploaded_file = request.files['file']
+    toc_depth = request.form.get('toc_depth', type=int)
+    if uploaded_file and allowed_file(uploaded_file.filename):
+        file_extension = os.path.splitext(uploaded_file.filename)[1].lower()
+        content = ''
+        if file_extension in ['.jpg', '.png']:
+            content = image_to_text(uploaded_file)
+        elif file_extension == '.md':
+            content = uploaded_file.read().decode('utf-8')
+        html_content, toc_html = markdown_to_html_with_toc(content, toc_depth)
+        return render_template('preview.html', html_content=html_content, toc_html=toc_html)
+    return jsonify({"error": "Unsupported file format"}), 400
+
+# ... (rest of the functions)
+
+def markdown_to_html_with_toc(markdown_content, toc_depth):
+    extras = ["toc", "fenced-code-blocks"]
+    html_content = markdown2.markdown(markdown_content, extras=extras)
+    toc_html = generate_toc(html_content, toc_depth)
+    return html_content, toc_html
+
+def generate_toc(html_content, depth):
+    # Logic to generate TOC based on the specified depth
+    pass
+
+# ... (rest of the code)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+# Enhancements for automatic TOC based on file contents
+
+# Import necessary libraries
+from flask import Flask, render_template, request, jsonify
+import markdown2
+from PIL import Image
+import pytesseract
+import os
+
+# Initialize Flask app
+app = Flask(__name__)
+
+# Supported file extensions
+ALLOWED_EXTENSIONS = {'md', 'jpg', 'png'}
+
+@app.route('/')
+def index():
+    # Render the main page
+    return render_template('index.html')
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    # Handle file upload
+    uploaded_file = request.files['file']
+    if uploaded_file and allowed_file(uploaded_file.filename):
+        file_extension = os.path.splitext(uploaded_file.filename)[1].lower()
+        content = ''
+        if file_extension in ['.jpg', '.png']:
+            # Convert image to text
+            content = image_to_text(uploaded_file)
+        elif file_extension == '.md':
+            # Read markdown content
+            content = uploaded_file.read().decode('utf-8')
+        # Generate HTML and TOC
+        html_content, toc_html = markdown_to_html_with_toc(content)
+        # Render preview page with TOC and content
+        return render_template('preview.html', html_content=html_content, toc_html=toc_html)
+    # Return error for unsupported file formats
+    return jsonify({"error": "Unsupported file format"}), 400
+
+def allowed_file(filename):
+    # Check if file extension is allowed
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def image_to_text(image_file):
+    # Use OCR to convert image to text
+    image = Image.open(image_file.stream)
+    return pytesseract.image_to_string(image)
+
+def markdown_to_html_with_toc(markdown_content):
+    # Convert markdown to HTML with TOC
+    extras = ["toc", "fenced-code-blocks"]
+    html_content = markdown2.markdown(markdown_content, extras=extras)
+    toc_html = html_content.toc_html
+    return html_content, toc_html
+
+if __name__ == '__main__':
+    # Run the Flask app
+    app.run(debug=True)
+
+
+html
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload File</title>
+</head>
+<body>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".md,.jpg,.png">
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>
+
+
+html
+<!-- templates/preview.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Preview</title>
+    <style>
+        #toc {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 100%;
+            overflow: auto;
+            background: #f0f0f0;
+            border-right: 1px solid #ccc;
+            padding: 10px;
+        }
+        #content {
+            margin-left: 220px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="toc">
+        <strong>Table of Contents</strong>
+        <ul>
+            {{ toc_html|safe }}
+        </ul>
+    </div>
+    <div id="content">
+        {{ html_content|safe }}
+    </div>
+</body>
+</html>
+
+The Python script now includes a more detailed and structured approach to handling file uploads and generating an interactive table of contents based on the file contents. The HTML templates are set up to display the uploaded content and the generated TOC. The script is ready to be run in a local development environment.
+
+
+python
+# main.py
+from flask import Flask, render_template, request, jsonify
+import markdown2
+from PIL import Image
+import pytesseract
+import os
+
+app = Flask(__name__)
+
+# Supported file extensions
+ALLOWED_EXTENSIONS = {'md', 'jpg', 'png'}
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    uploaded_file = request.files['file']
+    if uploaded_file and allowed_file(uploaded_file.filename):
+        file_extension = os.path.splitext(uploaded_file.filename)[1].lower()
+        content = ''
+        if file_extension in ['.jpg', '.png']:
+            content = image_to_text(uploaded_file)
+        elif file_extension == '.md':
+            content = uploaded_file.read().decode('utf-8')
+        html_content, toc_html = markdown_to_html_with_toc(content)
+        return render_template('preview.html', html_content=html_content, toc_html=toc_html)
+    return jsonify({"error": "Unsupported file format"}), 400
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def image_to_text(image_file):
+    image = Image.open(image_file.stream)
+    return pytesseract.image_to_string(image)
+
+def markdown_to_html_with_toc(markdown_content):
+    extras = ["toc", "fenced-code-blocks"]
+    html_content = markdown2.markdown(markdown_content, extras=extras)
+    toc_html = html_content.toc_html
+    return html_content, toc_html
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+html
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload File</title>
+</head>
+<body>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".md,.jpg,.png">
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>
+
+
+html
+<!-- templates/preview.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Preview</title>
+    <style>
+        #toc {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 100%;
+            overflow: auto;
+            background: #f0f0f0;
+            border-right: 1px solid #ccc;
+            padding: 10px;
+        }
+        #content {
+            margin-left: 220px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="toc">
+        <strong>Table of Contents</strong>
+        <ul>
+            {{ toc_html|safe }}
+        </ul>
+    </div>
+    <div id="content">
+        {{ html_content|safe }}
+    </div>
+</body>
+</html>
+
+
+python
+# main.py
+from flask import Flask, render_template, request, jsonify
+import markdown2
+from PIL import Image
+import pytesseract
+import os
+
+app = Flask(__name__)
+
+# Supported file extensions
+ALLOWED_EXTENSIONS = {'md', 'jpg', 'png'}
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    uploaded_file = request.files['file']
+    if uploaded_file and allowed_file(uploaded_file.filename):
+        file_extension = os.path.splitext(uploaded_file.filename)[1].lower()
+        content = ''
+        if file_extension in ['.jpg', '.png']:
+            content = image_to_text(uploaded_file)
+        elif file_extension == '.md':
+            content = uploaded_file.read().decode('utf-8')
+        html_content, toc_html = markdown_to_html_with_toc(content)
+        return render_template('preview.html', html_content=html_content, toc_html=toc_html)
+    return jsonify({"error": "Unsupported file format"}), 400
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def image_to_text(image_file):
+    image = Image.open(image_file.stream)
+    return pytesseract.image_to_string(image)
+
+def markdown_to_html_with_toc(markdown_content):
+    extras = ["toc", "fenced-code-blocks"]
+    html_content = markdown2.markdown(markdown_content, extras=extras)
+    toc_html = html_content.toc_html
+    return html_content, toc_html
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+html
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload File</title>
+</head>
+<body>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".md,.jpg,.png">
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>
+
+
+html
+<!-- templates/preview.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Preview</title>
+    <style>
+        #toc {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 100%;
+            overflow: auto;
+            background: #f0f0f0;
+            border-right: 1px solid #ccc;
+            padding: 10px;
+        }
+        #content {
+            margin-left: 220px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="toc">
+        <strong>Table of Contents</strong>
+        <ul>
+            {{ toc_html|safe }}
+        </ul>
+    </div>
+    <div id="content">
+        {{ html_content|safe }}
+    </div>
+</body>
+</html>
+
+

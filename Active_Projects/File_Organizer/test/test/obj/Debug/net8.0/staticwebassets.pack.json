@@ -1,0 +1,61 @@
+{
+  "Files": [
+    {
+      "Id": "c:\\Users\\aad53\\OneDrive\\Desktop\\PythonProjects\\Active_Projects\\File_Organizer\\test\\test\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "c:\\Users\\aad53\\OneDrive\\Desktop\\PythonProjects\\Active_Projects\\File_Organizer\\test\\test\\obj\\Debug\\net8.0\\compressed\\mv6n09zmcy.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "c:\\Users\\aad53\\OneDrive\\Desktop\\PythonProjects\\Active_Projects\\File_Organizer\\test\\test\\obj\\Debug\\net8.0\\scopedcss\\bundle\\test.styles.css",
+      "PackagePath": "staticwebassets\\test.styles.css"
+    },
+    {
+      "Id": "c:\\Users\\aad53\\OneDrive\\Desktop\\PythonProjects\\Active_Projects\\File_Organizer\\test\\test\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "c:\\Users\\aad53\\OneDrive\\Desktop\\PythonProjects\\Active_Projects\\File_Organizer\\test\\test\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "c:\\Users\\aad53\\OneDrive\\Desktop\\PythonProjects\\Active_Projects\\File_Organizer\\test\\test\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "c:\\Users\\aad53\\OneDrive\\Desktop\\PythonProjects\\Active_Projects\\File_Organizer\\test\\test\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "c:\\Users\\aad53\\OneDrive\\Desktop\\PythonProjects\\Active_Projects\\File_Organizer\\test\\test\\wwwroot\\icon-192.png",
+      "PackagePath": "staticwebassets\\icon-192.png"
+    },
+    {
+      "Id": "c:\\Users\\aad53\\OneDrive\\Desktop\\PythonProjects\\Active_Projects\\File_Organizer\\test\\test\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "c:\\Users\\aad53\\OneDrive\\Desktop\\PythonProjects\\Active_Projects\\File_Organizer\\test\\test\\wwwroot\\sample-data\\weather.json",
+      "PackagePath": "staticwebassets\\sample-data\\weather.json"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.test.props",
+      "PackagePath": "build\\test.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.test.props",
+      "PackagePath": "buildMultiTargeting\\test.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.test.props",
+      "PackagePath": "buildTransitive\\test.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.test.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

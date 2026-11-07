@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Healthcare Resume Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* Style the body */
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        /* Style the header */
+        .header {
+            padding: 20px;
+            text-align: center;
+            background-color: #3498db;
+            color: white;
+        }
+
+        /* Style the navigation bar */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #2c3e50;
+        }
+
+        /* Style the navigation links */
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        /* Change the color of links on hover */
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Style the main content */
+        .main {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 20px;
+        }
+
+        /* Style the left column */
+        .left {
+            flex: 30%;
+            max-width: 30%;
+            padding: 20px;
+        }
+
+        /* Style the right column */
+        .right {
+            flex: 70%;
+            max-width: 70%;
+            padding: 20px;
+        }
+
+        /* Style the image */
+        .image {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        /* Style the biography section */
+        .bio {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        /* Style the resume section */
+        .resume {
+            font-size: 16px;
+            line-height: 1.2;
+        }
+
+        /* Style the resume headings */
+        .resume h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        /* Style the resume subheadings */
+        .resume h4 {
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-style: italic;
+        }
+
+        /* Style the resume lists */
+        .resume ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        /* Style the resume list items */
+        .resume li {
+            margin-bottom: 5px;
+        }
+
+        /* Style the certification section */
+        .certification {
+            font-size: 16px;
+            line-height: 1.2;
+        }
+
+        /* Style the certification icons */
+        .certification i {
+            margin-right: 10px;
+        }
+
+        /* Style the contact section */
+        .contact {
+            font-size: 16px;
+            line-height: 1.2;
+            background-color: #ecf0f1;
+            padding: 20px;
+        }
+
+        /* Style the contact icons */
+        .contact i {
+            margin-right: 10px;
+        }
+
+        /* Style the contact form */
+        .contact form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Style the contact input fields */
+        .contact input, .contact textarea {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #bdc3c7;
+            margin: 10px;
+            outline: none;
+        }
+
+        /* Style the contact submit button */
+        .contact button {
+            width: 40%;
+            padding: 10px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* Change the color of the button on hover */
+        .contact button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Style the footer */
+        .footer {
+            padding: 10px;
+            text-align: center;
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        /* Make the website responsive */
+        @media screen and (max-width: 600px) {
+            .navbar a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+            .left, .right {
+                flex: 100%;
+                max-width: 100%;
+            }
+            .contact input, .contact textarea {
+                width: 90%;
+            }
+            .contact button {
+                width: 50%;
+            }
+            .header, .bio, .resume, .certification, .contact, .footer {
+                font-size: 14px;
+                padding: 10px;
+                margin: 10px;
+            }
+        }
+
+        /* Add some animations and transitions */
+        .contact input:focus, .contact textarea:focus {
+            background-color: #e8f0fe;
+        }
+        .contact button {
+            transform: translateX(-50%);
+        }
+        .contact button:hover {
+            transform: translateX(0);
+        }
+
+        /* Style the skills section */
+        .skills {
+            font-size: 16px;
+            line-height: 1.2;
+            background-color: #ecf0f1;
+            padding: 20px;
+        }
+
+        /* Style the skills icons */
+        .skills i {
+            margin-right: 10px;
+        }
+
+        /* Style the skills list */
+        .skills ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        /* Style the skills list items */
+        .skills li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        /* Style the skills progress bars */
+        .skills .bar {
+            width: 80%;
+            height: 20px;
+            border: 1px solid #bdc3c7;
+            background-color: #3498db;
+            transition: 0.3s;
+        }
+
+        /* Change the width of the progress bars according to the skill level */
+        .skills .bar-50 {
+            width: 50%;
+        }
+        .skills .bar-75 {
+            width: 75%;
+        }
+        .skills .bar-90 {
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Create the header -->
+    <div class="header">
+        <h1>My Healthcare Resume Website</h1>
+        <p>A website created by me.</p>
+    </div>
+
+    <!-- Create the navigation bar -->
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#resume">Resume</a>
+        <a href="#certification">Certification</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Create the main content -->
+    <div class="main">
+        <!-- Create the left column -->
+        <div class="left" id="home">
+            <!-- Add an image -->
+            <img src="me.jpg" alt="Me" class="image">
+            <!-- Add a biography -->
+            <div class="bio" id="about">
+                <h2>About Me</h2>
+                <p>Hi, I'm Jane Doe, a registered nurse with 5 years of experience in providing quality patient care in various healthcare settings. I have a passion for helping people and improving their health and well-being. I enjoy learning new skills and staying updated on the latest healthcare trends and practices.</p>
+            </div>
+        </div>
+        <!-- Create the right column -->
+        <div class="right">
+            <!-- Add a resume -->
+            <div class="resume" id="resume">
+                <h2>My Resume</h2>
+                <!-- Add education -->
+                <div class="education">
+                    <h3>Education</h3>
+                    <h4>Bachelor of Science in Nursing</h4>
+                    <p>Lehigh University, Bethlehem, PA</p>
+                    <p>Graduated in May 2020 with a GPA of 3.8</p>
+                    <ul>
+                        <li>Relevant courses: Anatomy and Physiology, Pharmacology, Pathophysiology, Medical-Surgical Nursing, Pediatric Nursing, Maternal-Child Nursing, etc.</li>
+                        <li>Projects: Conducted a research project on the effects of music therapy on anxiety and pain levels of post-operative patients; Presented a poster on the best practices for wound care and infection prevention; etc.</li>
+                        <li>Awards: Dean's List, Academic Excellence Scholarship, Sigma Theta Tau Honor Society of Nursing, etc.</li>
+                    </ul>
+                </div>
+

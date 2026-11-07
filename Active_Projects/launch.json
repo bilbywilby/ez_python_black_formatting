@@ -1,0 +1,228 @@
+{
+    // Python configurations and tasks
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Cake: Debug Script (.NET Tool)",
+            "type": "coreclr",
+            "request": "launch",
+            "program": "dotnet-cake",
+            "windows": {
+                "program": "dotnet-cake.exe"
+            },
+            "args": [
+                "${workspaceRoot}/build.cake",
+                "--debug",
+                "--verbosity=diagnostic"
+            ],
+            "cwd": "${workspaceRoot}",
+            "stopAtEntry": false,
+            "externalConsole": false,
+            "justMyCode": false
+        },
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}"
+        },
+        {
+            "name": "Debug Current Python File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "cwd": "${fileDirname}",
+            "purpose": [
+                "debug-in-terminal"
+            ]
+        },
+        {
+            "name": "Debug Current Python File with Arguments",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": "${command:pickArgs}"
+        },
+        {
+            "name": "Debug Current Python File with Debugger",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Lint Current Python File",
+            "type": "debugpy",
+            "request": "launch",
+            "preLaunchTask": "Python Linting",
+            "postDebugTask": "clean",
+            "presentation": {
+                "hidden": false,
+                "group": "Python",
+                "order": 0
+            },
+            "problemMatcher": "$de",
+            "console": "internalConsole"
+        },
+        {
+            "name": "Debug Python with Pytest and Coverage",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "pytest",
+            "args": [
+                "--cov=${workspaceFolder}",
+                "--cov-report=term-missing",
+                "${workspaceFolder}/tests"
+            ],
+            "console": "integratedTerminal",
+            "presentation": {
+                "hidden": false,
+                "group": "Python-Test",
+                "order": 1
+            }
+        },
+        {
+            "name": "Debug Flask (0.11.x or later) with Reload",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "flask",
+            "env": {
+                "FLASK_APP": "${workspaceFolder}/app.py",
+                "FLASK_ENV": "development",
+                "FLASK_DEBUG": "1"
+            },
+            "args": [
+                "run",
+                "--no-debugger"
+            ],
+            "jinja": true,
+            "presentation": {
+                "hidden": false,
+                "group": "Python-Web",
+                "order": 2
+            }
+        },
+        {
+            "name": "Debug Django with Auto-reload",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "runserver",
+                "--noreload"
+            ],
+            "django": true,
+            "presentation": {
+                "hidden": false,
+                "group": "Python-Web",
+                "order": 3
+            }
+        },
+        {
+            "name": "Debug Python in Interactive Mode",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": [
+                "-i"
+            ],
+            "presentation": {
+                "hidden": false,
+                "group": "Python-Interactive",
+                "order": 4
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "All Debug Sessions",
+            "include": [
+                "Python Program"
+            ]
+        }
+    ],
+    // C++ configurations and tasks
+    "tasks": [
+        {
+            "label": "Generate TOC",
+            "type": "shell",
+            "command": "python",
+            "args": [
+                "${file}",
+                "-m",
+                "toc_generator"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "CMake Configure",
+            "type": "cmake",
+            "request": "launch",
+            "name": "CMake: Configure project",
+            "cmakeDebugType": "configure",
+            "clean": false,
+            "configureAll": false
+        },
+        {
+            "label": "Build C++",
+            "type": "shell",
+            "command": "./build.sh",
+            "presentation": {
+                "hidden": true
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Run C++",
+            "type": "cppdbg",
+            "request": "launch",
+            "name": "BB",
+            "program": "${workspaceFolder}/bin/myprogram",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "env": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build C++",
+            "miDebuggerServerAddress": "localhost:1234"
+        }
+    ],
+    // Markdown configurations and tasks
+    "markdown.preview.theme": "GitHub",
+    "markdown.preview.breaks": true,
+    "markdown.preview.fontFamily": "Menlo, Consolas, 'Courier New', monospace",
+    "markdown.preview.lineHeight": 1.6,
+    "markdown.preview.scrollEditorWithPreview": true,
+    "markdown.toc.levels": [
+        2,
+        3
+    ],
+    "markdown.extension.toc.updateOnSave": true
+}
+// Suggestions:
+// 1. Use consistent formatting
+// 2. Use descriptive names
+// 3. Remove unnecessary configurations/tasks
+// 4. Add comments
+// 5. Group similar options together
+// 6. Add error handling
+// 7. Simplify the file structure

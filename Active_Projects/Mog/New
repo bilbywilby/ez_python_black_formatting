@@ -1,0 +1,295 @@
+import os
+
+db_connection_string = os.getenv('DB_CONNECTION_STRING')
+smtp_server = os.getenv('SMTP_SERVER')
+smtp_port = os.getenv('SMTP_PORT')
+email_address = os.getenv('EMAIL_ADDRESS')
+email_password = os.getenv('EMAIL_PASSWORD')
+api_key = os.getenv('API_KEY')
+
+import logging
+import threading
+import smtplib
+from email.message import EmailMessage
+from tkinter import Tk, Label, Entry, Button
+import schedule
+import time
+from cryptography.fernet import Fernet
+import os
+from unittest import TestCase, main as unittest_main
+from sqlalchemy import create_engine
+from sqlalchemy.pool import QueuePool
+from dotenv import load_dotenv
+load_dotenv()
+
+# Set up environment variables for sensitive information
+API_KEY = os.getenv('API_KEY')
+EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')
+EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
+SMTP_SERVER = os.getenv('SMTP_SERVER')
+SMTP_PORT = os.getenv('SMTP_PORT')
+DB_CONNECTION_STRING = os.getenv('DB_CONNECTION_STRING')
+
+# Configure logging
+logging.basicConfig(filename='app.log', level=logging.INFO)
+
+# Database connection pool
+engine = create_engine(DB_CONNECTION_STRING, poolclass=QueuePool)
+# Function to send email notifications
+def send_email(subject, body):
+    msg = EmailMessage()
+    msg.set_content(body)
+    msg['Subject'] = subject
+    msg['From'] = EMAIL_ADDRESS
+    msg['To'] = 'recipient@example.com'
+
+    with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as s:
+        s.starttls()
+        s.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+        s.send_message(msg)
+
+# GUI for user interaction
+class DataTransferGUI:
+    def __init__(self):
+        self.root = Tk()
+        self.root.title("Medical Data Transfer Tool")
+        self.api_key_entry = Entry(self.root)
+        self.setup_gui()
+
+    def setup_gui(self):
+        Label(self.root, text="Enter API Key:").grid(row=0, column=0)
+        self.api_key_entry.grid(row=0, column=1)
+        transfer_button = Button(self.root, text="Transfer Data", command=self.on_transfer_click)
+        transfer_button.grid(row=1, columnspan=2)
+
+    def on_transfer_click(self):
+        api_key = self.api_key_entry.get()
+        # Implement the data transfer logic here
+        # ...
+
+# Scheduler to run the data transfer daily
+def schedule_data_transfer(gui):
+    schedule.every().day.at("10:00").do(gui.on_transfer_click)
+
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+# Unit tests for the application
+class TestApplication(TestCase):
+    def test_encryption_decryption(self):
+        # Test the encryption and decryption functions
+        pass
+
+    def test_data_validation(self):
+        # Test the data validation logic
+        pass
+
+    # Add more unit tests as needed
+
+# Main process
+if __name__ == "__main__":
+    unittest_main()  # Run unit tests first
+    gui = DataTransferGUI()
+    gui_thread = threading.Thread(target=gui.root.mainloop)
+    gui_thread.start()
+    schedule_data_transfer(gui)
+import logging
+import threading
+import smtplib
+from email.message import EmailMessage
+from tkinter import Tk, Label, Entry, Button
+import schedule
+import time
+from cryptography.fernet import Fernet
+from sqlalchemy import create_engine
+from sqlalchemy.pool import QueuePool
+import os
+
+# Set up environment variables for sensitive information
+API_KEY = os.getenv('API_KEY')
+EMAIL_ADDRESS = os.getenv('EMAIL_ADDRESS')
+EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
+SMTP_SERVER = os.getenv('SMTP_SERVER')
+SMTP_PORT = os.getenv('SMTP_PORT')
+DB_CONNECTION_STRING = os.getenv('DB_CONNECTION_STRING')
+
+# Configure logging
+logging.basicConfig(filename='app.log', level=logging.INFO)
+
+# Database connection pool
+engine = create_engine(DB_CONNECTION_STRING, poolclass=QueuePool)
+
+# Function to send email notifications
+def send_email(subject, body):
+    msg = EmailMessage()
+    msg.set_content(body)
+    msg['Subject'] = subject
+    msg['From'] = EMAIL_ADDRESS
+    msg['To'] = 'recipient@example.com'
+
+    with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as s:
+        s.starttls()
+        s.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+        s.send_message(msg)
+
+# GUI for user interaction
+class DataTransferGUI:
+    def __init__(self):
+        self.root = Tk()
+        self.root.title("Medical Data Transfer Tool")
+        self.api_key_entry = Entry(self.root)
+        self.setup_gui()
+
+    def setup_gui(self):
+        Label(self.root, text="Enter API Key:").grid(row=0, column=0)
+        self.api_key_entry.grid(row=0, column=1)
+        transfer_button = Button(self.root, text="Transfer Data", command=self.on_transfer_click)
+        transfer_button.grid(row=1, columnspan=2)
+
+    def on_transfer_click(self):
+        api_key = self.api_key_entry.get()
+        # Implement the data transfer logic here
+        # ...
+
+# Scheduler to run the data transfer daily
+def schedule_data_transfer(gui):
+    schedule.every().day.at("10:00").do(gui.on_transfer_click)
+
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+# Main process
+if __name__ == "__main__":
+    gui = DataTransferGUI()
+    gui_thread = threading.Thread(target=gui.root.mainloop)
+    gui_thread.start()
+    schedule_data_transfer(gui)
+import logging
+import requests
+import threading
+import smtplib
+from email.message import EmailMessage
+from tkinter import Tk, Label, Entry, Button
+import schedule
+import time
+from cryptography.fernet import Fernet
+from sqlalchemy import create_engine
+from sqlalchemy.pool import QueuePool
+
+# Configure logging
+logging.basicConfig(filename='app.log', level=logging.ERROR)
+
+# Function to encrypt data
+def encrypt_data(data, key):
+    fernet = Fernet(key)
+    encrypted_data = fernet.encrypt(data.encode())
+    return encrypted_data
+
+# Function to decrypt data
+def decrypt_data(encrypted_data, key):
+    fernet = Fernet(key)
+    decrypted_data = fernet.decrypt(encrypted_data).decode()
+    return decrypted_data
+
+# Function to validate data
+def validate_data(data):
+    # Implement validation logic
+    return True
+
+# Function to extract data from source
+def extract_data_from_source():
+    # Code to extract data from hospital charts
+    pass
+
+# Function to transform data
+def transform_data(data):
+    # Code to transform data to match Life Logic's expected format
+    pass
+
+# Function to load data into Life Logic
+def load_data_to_life_logic(transformed_data, api_key):
+    # Code to load data into the Life Logic EDC system
+    pass
+
+# Function to send email notifications
+def send_email(subject, body):
+    msg = EmailMessage()
+    msg.set_content(body)
+    msg['Subject'] = subject
+    msg['From'] = 'your_email@example.com'
+    msg['To'] = 'recipient@example.com'
+
+    with smtplib.SMTP('smtp.example.com', 587) as s:
+        s.starttls()
+        s.login('your_email@example.com', 'your_password')
+        s.send_message(msg)
+
+# Database connection pool
+engine = create_engine('postgresql://user:password@localhost/dbname', poolclass=QueuePool)
+
+# GUI for user interaction
+def create_gui():
+    root = Tk()
+    root.title("Medical Data Transfer Tool")
+
+    Label(root, text="Enter API Key:").grid(row=0, column=0)
+    api_key_entry = Entry(root)
+    api_key_entry.grid(row=0, column=1)
+
+    def on_transfer_click():
+        api_key = api_key_entry.get()
+        try:
+            data = extract_data_from_source()
+            if validate_data(data):
+                transformed_data = transform_data(data)
+                encrypted_data = encrypt_data(transformed_data, api_key)
+                load_data_to_life_logic(encrypted_data, api_key)
+                send_email("Data Transfer Successful", "The data transfer was completed successfully.")
+                print("Data transfer successful.")
+            else:
+                send_email("Data Transfer Failed", "Invalid data was provided.")
+                print("Invalid data.")
+        except Exception as e:
+            logging.error("An error occurred: %s", e)
+            send_email("Data Transfer Error", f"An error occurred during data transfer: {e}")
+            print("An error occurred during data transfer.")
+
+    transfer_button = Button(root, text="Transfer Data", command=on_transfer_click)
+    transfer_button.grid(row=1, columnspan=2)
+
+    root.mainloop()
+
+# Scheduler to run the data transfer daily
+def schedule_data_transfer():
+    schedule.every().day.at("10:00").do(create_gui)
+
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+# Main process
+if __name__ == "__main__":
+    # Run the GUI in a separate thread
+    gui_thread = threading.Thread(target=create_gui)
+    gui_thread.start()
+
+    # Start the scheduler
+    schedule_data_transfer()
+# ... previous code ...
+
+# Main process
+if __name__ == "__main__":
+    unittest_main()  # Run unit tests first
+
+    # Check if the script is being run in a development environment
+    if os.getenv('ENVIRONMENT') == 'development':
+        # If in development, run the tests and exit
+        unittest_main()
+    else:
+        # If in production, start the GUI and schedule the data transfers
+        gui = DataTransferGUI()
+        gui_thread = threading.Thread(target=gui.root.mainloop)
+        gui_thread.start()
+        schedule_data_transfer(gui)

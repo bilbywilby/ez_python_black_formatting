@@ -1,0 +1,91 @@
+## Bing
+Sure, here's an improved version of the Flask application that focuses on the resume upload and generation functionality:
+app.py:
+
+from flask import Flask, render_template, request, redirect, url_for, flash
+from werkzeug.utils import secure_filename
+from PyPDF2 import PdfFileReader
+import os
+
+app = Flask(__name__)
+app.config['SECRET_KEY'] = os.urandom(24)
+app.config['UPLOAD_FOLDER'] = 'uploads'
+
+@app.route('/', methods=['GET', 'POST'])
+def upload_resume():
+    if request.method == 'POST':
+        if 'resume' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['resume']
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(filepath)
+            resume_data = parse_pdf(filepath)
+            return render_template('resume.html', data=resume_data)
+    return render_template('upload.html')
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() == 'pdf'
+
+def parse_pdf(filepath):
+    with open(filepath, 'rb') as file:
+        reader = PdfFileReader(file)
+        text = reader.getPage(0).extractText()
+        return extract_resume_data(text)
+
+def extract_resume_data(text):
+    # Implement your own logic to extract the necessary data
+    # from the resume text and return it as an object
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+templates/upload.html:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Resume</title>
+</head>
+<body>
+    <h1>Upload Resume</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="resume" accept=".pdf">
+        <input type="submit" value="Upload">
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
+
+templates/resume.html:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resume</title>
+</head>
+<body>
+    <h1>Resume</h1>
+    <!-- Display the resume data here -->
+</body>
+</html>
+
+This version of the application includes a file upload form on the home page where users can upload their resumes. The uploaded PDF is parsed and the text is extracted from the first page. The text is then passed to a function (extract_resume_data) that extracts the necessary data from the resume. The extracted data is then passed to the resume.html template to display the resume data on the webpage.
+Please replace 'your_secret_key' with a secret key for your Flask application. This is used to keep client-side sessions secure.
+You'll also need to create a templates folder in the same directory as this script, with an upload.html file for the upload form and a resume.html file to display the resume data.
+Remember, this is just a basic setup. Depending on your project, you might need to add more routes, forms, templates, or static files. The important thing is to keep your project organized and easy to navigate. Happy coding!

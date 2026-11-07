@@ -1,0 +1,21 @@
+{
+  "folders": [
+    {
+      "path": "../File_Organizer"
+    }
+  ],
+  "launch": {
+    "version": "0.2.0",
+    "configurations": []
+  },
+  "settings": {
+    "java.format.settings.url": "eclipse-formatter.xml",
+    "cSpell.language": "en,en-US"
+  },
+  "extensions": {
+    "recommendations": [
+      "jakebecker.elixir-ls",
+      "streetsidesoftware.code-spell-checker"
+    ]
+  }
+}

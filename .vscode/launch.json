@@ -1,0 +1,199 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch with Arguments Prompt",
+      "request": "launch",
+      "mainClass": "",
+      "args": "${command:SpecifyProgramArgs}"
+    },
+    {
+      "name": "C#: <project-name> Debug",
+      "type": "dotnet",
+      "request": "launch",
+      "projectPath": "${workspaceFolder}/<relative-path-to-project-folder><project-name>.csproj"
+    },
+    {
+      "args": [
+        "-u",
+        "tdd",
+        "--timeout",
+        "999999",
+        "--colors",
+        "${workspaceFolder}/test"
+      ],
+      "internalConsoleOptions": "openOnSessionStart",
+      "name": "Mocha Tests",
+      "program": "${workspaceFolder}/node_modules/mocha/bin/_mocha",
+      "request": "launch",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "type": "node"
+    },
+
+    {
+      "type": "java",
+      "name": "Launch Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+
+
+    },
+  {
+    "name": "Cake: Debug Script (.NET Tool)",
+    "type": "coreclr",
+    "request": "launch",
+    "program": "dotnet-cake",
+    "windows": {
+      "program": "dotnet-cake.exe"
+    },
+    "args": [
+      "${workspaceRoot}/build.cake",
+      "--debug",
+      "--verbosity=diagnostic"
+    ],
+    "cwd": "${workspaceRoot}",
+    "stopAtEntry": false,
+    "externalConsole": false,
+    "justMyCode": false
+  },
+    {
+      "type": "mix_task",
+      "request": "launch",
+      "name": "mix task",
+      "task": "task",
+      "taskArgs": [],
+      "projectDir": "${workspaceRoot}"
+    },
+    {
+      "name": ".NET Core Attach",
+      "type": "coreclr",
+      "request": "attach"
+    },
+    {
+      "name": "Python Debugger: FastAPI",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "main:app",
+        "--reload"
+      ],
+      "jinja": true
+    },
+    {
+      "name": "Python: Debug Current Python File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}"
+    },
+    {
+      "name": "Python: Debug with Pytest and Coverage",
+
+
+
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": [
+        "${workspaceFolder}/tests",
+        "--cov=${workspaceFolder}",
+        "--cov-report=html",
+        "--no-cov-on-fail"
+      ],
+      "cwd": "${workspaceFolder}",
+      "env": {
+        "PYTHONDONTWRITEBYTECODE": "1"
+      },
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "C++: Build and Run",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/build/${workspaceFolderBasename}",
+      "stopAtEntry": false,
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "environment": [],
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "C++: Build",
+      "postDebugTask": "C++: Clean"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "c:/Users/aad53/OneDrive/Desktop/PythonProjects",
+      "program": "c:/Users/aad53/OneDrive/Desktop/PythonProjects/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    },
+    {
+      "name": ".NET Core Launch (web)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/Active_Projects/Create_File_Directoryies/Create_File_Directoryies/bin/Debug/net8.0/Create_File_Directoryies.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Active_Projects/Create_File_Directoryies/Create_File_Directoryies",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+        "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": "Docker Node.js Launch",
+      "type": "docker",
+      "request": "launch",
+      "preLaunchTask": "docker-run: debug",
+      "platform": "node",
+      "node": {
+        "package": "${workspaceFolder}/vscode-black-formatter/package.json",
+        "localRoot": "${workspaceFolder}/vscode-black-formatter"
+      }
+    },
+    {
+      "name": "Python Debugger: Python File",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Debug: Full Python Test Coverage",
+      "configurations": [
+        "Python: Debug Current Python File",
+        "Python: Debug with Pytest and Coverage"
+      ]
+    }
+  ]
+}

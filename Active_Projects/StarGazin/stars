@@ -1,0 +1,87 @@
+from flask import Flask, render_template, request, redirect, url_for, flash
+import nexstar
+from starcatalogquery import StarCatalog
+from functools import lru_cache
+import threading
+import time
+
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Replace with your secret key
+
+TELESCOPE_PORT = 'COM_PORT'  # Replace with the actual COM port connected to your telescope
+
+class TelescopeController:
+    def __init__(self, port):
+        self.telescope = nexstar.NexstarHandController(port)
+        self.star_catalog = StarCatalog()
+
+    @lru_cache(maxsize=128)
+    def get_star_coordinates(self, star_name):
+        # Function to get coordinates of a star by name
+        pass
+
+    def connect_telescope(self):
+        try:
+            self.telescope.connect()
+            flash("Telescope connected successfully.", "success")
+        except Exception as e:
+            flash(f"Error connecting to telescope: {e}", "error")
+
+    def slew_to(self, ra_hours, dec_degrees):
+        try:
+            self.telescope.gotoPosition(ra_hours, dec_degrees)
+            flash(f"Slewing to RA: {ra_hours} hours, Dec: {dec_degrees} degrees.", "success")
+        except Exception as e:
+            flash(f"Error slewing telescope: {e}", "error")
+
+    def set_tracking_mode(self, mode):
+        try:
+            self.telescope.setTrackingMode(mode)
+            flash(f"Tracking mode set to {mode}.", "success")
+        except Exception as e:
+            flash(f"Error setting tracking mode: {e}", "error")
+
+    def identify_stars(self, fov_width, fov_height, ra_center, dec_center):
+        try:
+            stars = self.star_catalog.spherical_cap_search(ra_center, dec_center, fov_width, fov_height)
+            return stars
+        except Exception as e:
+            flash(f"Error identifying stars: {e}", "error")
+            return []
+
+    def update_time(self):
+        while True:
+            if self.telescope.getAlignmentComplete():
+                self.telescope.setTime(time.gmtime())
+            time.sleep(3600)
+
+telescope_controller = TelescopeController(TELESCOPE_PORT)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/connect', methods=['POST'])
+def connect():
+    telescope_controller.connect_telescope()
+    return redirect(url_for('index'))
+
+@app.route('/slew', methods=['POST'])
+def slew():
+    ra_hours = request.form.get('ra_hours', type=float)
+    dec_degrees = request.form.get('dec_degrees', type=float)
+    telescope_controller.slew_to(ra_hours, dec_degrees)
+    return redirect(url_for('index'))
+
+@app.route('/identify', methods=['POST'])
+def identify():
+    fov_width = request.form.get('fov_width', type=float)
+    fov_height = request.form.get('fov_height', type=float)
+    ra_center = request.form.get('ra_center', type=float)
+    dec_center = request.form.get('dec_center', type=float)
+    stars = telescope_controller.identify_stars(fov_width, fov_height, ra_center, dec_center)
+    return render_template('stars.html', stars=stars)
+
+if __name__ == '__main__':
+    threading.Thread(target=telescope_controller.update_time, daemon=True).start()
+    app.run(debug=True)

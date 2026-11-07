@@ -1,0 +1,14 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "extensions": {
+    "recommendations": [
+      "dbaeumer.vscode-eslint",
+      "evolution-gaming.evolution-gaming--vscode-eslint",
+      "ms-python.python"
+    ]
+  }
+}

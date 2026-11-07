@@ -1,0 +1,81 @@
+"endColumn": 14
+	"endColumn": 30
+	"endColumn": 31
+	"endColumn": 37
+	"endColumn": 42
+	"endColumn": 44
+	"endColumn": 45
+	"endColumn": 49
+	"endColumn": 50
+	"endColumn": 51
+	"endColumn": 52
+	"endColumn": 58
+	"endLineNumber": 100,
+	"endLineNumber": 18,
+	"endLineNumber": 24,
+	"endLineNumber": 27,
+	"endLineNumber": 28,
+	"endLineNumber": 29,
+	"endLineNumber": 4,
+	"endLineNumber": 41,
+	"endLineNumber": 42,
+	"endLineNumber": 43,
+	"endLineNumber": 44,
+	"endLineNumber": 45,
+	"endLineNumber": 46,
+	"endLineNumber": 47,
+	"endLineNumber": 48,
+	"endLineNumber": 72,
+	"endLineNumber": 78,
+	"endLineNumber": 83,
+	"endLineNumber": 87,
+	"endLineNumber": 89,
+	"endLineNumber": 90,
+	"endLineNumber": 93,
+	"endLineNumber": 94,
+	"endLineNumber": 95,
+	"endLineNumber": 96,
+	"endLineNumber": 97,
+	"endLineNumber": 98,
+	"endLineNumber": 99,
+	"message": "Duplicate object key",
+	"owner": "_generated_diagnostic_collection_name_#1",
+	"resource": "/C:/Users/aad53/OneDrive/Desktop/El Patrone/PythonProjects/Active_Projects/File_Organizer/settings.json",
+	"severity": 4,
+	"source": "jsonc",
+	"startColumn": 5,
+	"startLineNumber": 100,
+	"startLineNumber": 18,
+	"startLineNumber": 24,
+	"startLineNumber": 27,
+	"startLineNumber": 28,
+	"startLineNumber": 29,
+	"startLineNumber": 4,
+	"startLineNumber": 41,
+	"startLineNumber": 42,
+	"startLineNumber": 43,
+	"startLineNumber": 44,
+	"startLineNumber": 45,
+	"startLineNumber": 46,
+	"startLineNumber": 47,
+	"startLineNumber": 48,
+	"startLineNumber": 72,
+	"startLineNumber": 78,
+	"startLineNumber": 83,
+	"startLineNumber": 87,
+	"startLineNumber": 89,
+	"startLineNumber": 90,
+	"startLineNumber": 93,
+	"startLineNumber": 94,
+	"startLineNumber": 95,
+	"startLineNumber": 96,
+	"startLineNumber": 97,
+	"startLineNumber": 98,
+	"startLineNumber": 99,
+"code": "520",
+[{
+},{
+}]
+# Custom Dictionary Words
+messagebox
+Renamer
